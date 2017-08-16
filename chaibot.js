@@ -1,4 +1,4 @@
-console.log('The bot is starting!');
+console.log('The follow bot is starting!');
 // Import npm twit package
 var Twit = require('twit');
 // Import config.js file
@@ -6,12 +6,23 @@ var config = require('./config');
 // Make new twit object with config info
 var T = new Twit(config);
 
+// Set up a user stream
+var stream = T.stream('user');
+// Anytime someone follows me - 'on' function assigns a callback
+stream.on('follow', followed);
 
-function tweetIt() {
+function followed(eventMsg) {
+  console.log("Follow event!");
+  // JSON data
+  var name = eventMsg.source.name;
+  var screenName = eventMsg.source.screen_name;
+  tweetIt('@' + screenName + ' Thanks for the follow! :)');
+}
 
-  var r = Math.floor(Math.random()*100);
+function tweetIt(txt) {
+
   var tweet = {
-    status: 'Testing Chaibot: here is a random number ' + r + ' #pouringsomechai from node.js'
+    status: txt
   };
 
   T.post('statuses/update', tweet, tweeted);
@@ -27,7 +38,7 @@ function tweetIt() {
 }
 
 tweetIt();
-setInterval(tweetIt, 1000*20);
+// setInterval(tweetIt, 1000*20);
 
 // POST REQUEST - tweeting
 //  Tweet object - one parameter
