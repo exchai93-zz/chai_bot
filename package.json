@@ -1,0 +1,23 @@
+{
+  "name": "chai_bot",
+  "version": "1.0.0",
+  "description": "Twitter bot fun!",
+  "main": "chaibot.js",
+  "dependencies": {
+    "twit": "^2.2.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exchai93/chai_bot.git"
+  },
+  "author": "Emily Chai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exchai93/chai_bot/issues"
+  },
+  "homepage": "https://github.com/exchai93/chai_bot#readme"
+}
