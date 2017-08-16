@@ -1,27 +1,23 @@
 console.log('The bot is starting!');
-
+// Import npm twit package
 var Twit = require('twit');
-
-var T = new Twit({
-  consumer_key:
-  consumer_secret:
-  access_token:
-  access_token_secret:
-  timeout_ms:
-})
+// Import config.js file
+var config = require('./config');
+// Make new twit object with config info
+var T = new Twit(config);
 
 // GET REQUEST - searching on twitter
-// object with parameters
+// Object with parameters
 var params = {
-  q: 'sun',
+  q: 'holiday',
   count: 5
 };
-// get request
+// Get request
 T.get('search/tweets', params, gotData);
-// callback function triggered when data returns from API
-function GotData(err, data, response) {
+// Callback function triggered when data returns from API
+function gotData(err, data, response) {
   var tweets = data.statuses;
-  for (var i = 0, i < tweets.length; i ++) {
+  for (var i = 0; i < tweets.length; i ++) {
     console.log(tweets[i].text);
   }
 }
@@ -33,10 +29,10 @@ function GotData(err, data, response) {
 //  Tweet object - one parameter
 var tweet = {
   status: '#girlswhocode'
-}
+};
 // Post to the Twitter API
 T.post('statuses/update', tweet, tweeted);
-// callback function
+// Callback function
 function tweeted(err, data, response) {
   if (err) {
     console.log("Something went wrong!");
